@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cars</title>
+    <style>
+        table th, table td {padding: 5px;}
+        .row  {
+            font-style: italic;
+        }
+        .even-row {
+            color: black;
+        }
+        .odd-row {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <th>MODEL</th>
+        <th>SERIES</th>
+        <th>SPEED</th>
+    </tr>
+    <tr th:each="car : ${cars}">
+        <td th:utext="${car.getModel()}">model</td>
+        <td th:utext="${car.getSeries()}">series</td>
+        <td th:utext="${car.getMaxSpeed()}">maxSpeed</td>
+    </tr>
+</table>
+</body>
+</html>
