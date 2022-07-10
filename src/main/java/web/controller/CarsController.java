@@ -1,8 +1,6 @@
 package web.controller;
-
-import DAO.CarDAO;
+import web.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,19 +10,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/cars")
-@ComponentScan("DAO")
 public class CarsController {
 
-    private CarDAO carDAO;
+    private Service service;
 
     @Autowired
-    public CarsController(CarDAO carDAO) {
-        this.carDAO = carDAO;
+    public CarsController(Service service) {
+        this.service = service;
     }
 
     @GetMapping()
     public String showAll(@RequestParam(value = "count", required = false) Integer count, Model model) {
-        model.addAttribute("cars", carDAO.showAll(count));
+        model.addAttribute("cars", service.showAll(count));
         return "cars";
 
     }
